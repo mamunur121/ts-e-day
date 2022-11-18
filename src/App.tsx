@@ -1,13 +1,19 @@
-import React, { ReactNode } from "react";
+import React, { CSSProperties, ReactNode } from "react";
 
 type BoxProps = {
   children: ReactNode;
+  style?: CSSProperties;
 };
 
-const Box = ({ children }: BoxProps) => {
+const Box = ({ children, style = {} }: BoxProps) => {
   return (
     <section
-      style={{ padding: "1em", border: "10px solid red", margin: "1em" }}
+      style={{
+        padding: "1em",
+        border: "10px solid red",
+        margin: "1em",
+        ...style,
+      }}
     >
       {children}
     </section>
@@ -22,7 +28,7 @@ function App() {
       <Box>
         <h2>Another React component with one child.</h2>
       </Box>
-      <Box>
+      <Box style={{ borderColor: "blue", background: "antiquewhite" }}>
         <h2>A nested React component with two children.</h2>
         <p>The second child.</p>
       </Box>
