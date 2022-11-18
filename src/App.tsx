@@ -1,18 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 type NameTagProps = {
   name: string;
+  greetings?: string;
 };
 
-// const NameTag = (props: NameTagProps) => Equivalent to <p>{props.name}</p>
-// const NameTag = (props: {name: string) => Equivalent to <p>{props.name}</p>
-// const NameTag: (name) => JSX.Element;
-const NameTag = ({ name }: NameTagProps): JSX.Element => {
+const NameTag = ({ name, greetings = "Hello" }: NameTagProps): JSX.Element => {
   return (
     <main>
       <header>
-        <h1>Hello</h1>
+        <h1>{greetings}</h1>
         <p>My Name Is</p>
       </header>
       <section className="display-name">
@@ -21,10 +18,6 @@ const NameTag = ({ name }: NameTagProps): JSX.Element => {
       <footer />
     </main>
   );
-};
-
-NameTag.propTypes = {
-  name: PropTypes.string.isRequired,
 };
 
 function App() {
