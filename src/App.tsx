@@ -1,27 +1,33 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-type NameTagProps = {
-  name: string;
-  greetings?: string;
+type BoxProps = {
+  children: ReactNode;
 };
 
-const NameTag = ({ name, greetings = "Hello" }: NameTagProps): JSX.Element => {
+const Box = ({ children }: BoxProps) => {
   return (
-    <main>
-      <header>
-        <h1>{greetings}</h1>
-        <p>My Name Is</p>
-      </header>
-      <section className="display-name">
-        <p>{name}</p>
-      </section>
-      <footer />
-    </main>
+    <section
+      style={{ padding: "1em", border: "10px solid red", margin: "1em" }}
+    >
+      {children}
+    </section>
   );
 };
 
 function App() {
-  return <NameTag name="Mama" />;
+  return (
+    <Box>
+      Just a string.
+      <p>Some HTML that is not nested.</p>
+      <Box>
+        <h2>Another React component with one child.</h2>
+      </Box>
+      <Box>
+        <h2>A nested React component with two children.</h2>
+        <p>The second child.</p>
+      </Box>
+    </Box>
+  );
 }
 
 export default App;
