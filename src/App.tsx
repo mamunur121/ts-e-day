@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import PropTypes from "prop-types";
+
+type NameTagProps = {
+  name: string;
+};
+
+// const NameTag = (props: NameTagProps) => Equivalent to <p>{props.name}</p>
+// const NameTag = (props: {name: string) => Equivalent to <p>{props.name}</p>
+// const NameTag: (name) => JSX.Element;
+const NameTag = ({ name }: NameTagProps): JSX.Element => {
+  return (
+    <main>
+      <header>
+        <h1>Hello</h1>
+        <p>My Name Is</p>
+      </header>
+      <section className="display-name">
+        <p>{name}</p>
+      </section>
+      <footer />
+    </main>
+  );
+};
+
+NameTag.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <NameTag name="Mama" />;
 }
 
 export default App;
