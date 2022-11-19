@@ -1,34 +1,24 @@
-import React, { useState } from "react";
-import { questions } from "./question";
-
-type QuestionProps = {
-  question: string;
-  answer: string;
-};
-
-const Question = ({ question, answer }: QuestionProps) => {
-  const [isHidden, toggleHidden] = useState(true);
-  return (
-    <article className="question">
-      <header>{question}</header>
-      <p className="answer">
-        <span className={`${isHidden ? "blurred" : ""} `}>{answer}</span>
-      </p>
-      <footer>
-        <button onClick={() => toggleHidden(!isHidden)}>Toggle Answer</button>
-      </footer>
-    </article>
-  );
-};
+import React from "react";
+import { CharacterType, fetchCharacter } from "./character";
+import { Loading } from "./Loading";
+import { CharacterInformation } from "./CharacterInformation";
 
 function App() {
+  const [character, setCharacter] = React.useState<CharacterType | null>(null);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      fetchCharacter().then((character) => {
+        setCharacter(character);
+        setLoading(false);
+      });
+    }, 1500);
+  }, []);
+  if (loading) return <Loading />;
   return (
-    <main>
-      {questions.map(({ id, question, answer }) => (
-        <Question question={question} answer={answer} key={id} />
-      ))}
-      ;
-    </main>
+    <main>{character && <CharacterInformation character={character} />}</main>
   );
 }
 
