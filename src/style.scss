@@ -1,12 +1,8 @@
-$primary-color: magenta;
+$button-color: magenta;
 
 html, body, * {
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
-}
-
-body {
-  background-color: #333;
 }
 
 h1 {
@@ -14,25 +10,22 @@ h1 {
 }
 
 button, input[type="submit"] {
-  background-color: $primary-color;
-  border: 5px solid lighten($primary-color, 30%);
+  background-color: $button-color;
+  border: 5px solid lighten($button-color, 30%);
   color: white;
   margin: 0 0.5em;
   padding: 1em;
   outline: none;
-
   &:hover {
-    background-color: darken($primary-color, 5%);
+    background-color: darken($button-color, 5%);
   }
-
   &:active {
-    background-color: darken($primary-color, 10%);
+    background-color: darken($button-color, 10%);
   }
 }
 
 input {
   padding: 1em;
-
   &:not([type="submit"]) {
     display: block;
     margin: 0.5em;
@@ -44,7 +37,6 @@ form {
   margin: 1em 0;
   display: flex;
   flex-direction: column;
-
   label {
     text-align: center;
     display: block;
@@ -52,39 +44,20 @@ form {
   }
 }
 
-main {
-  border: 5px solid lighten($primary-color, 40%);
+.Counter {
+  border: 5px solid lighten($button-color, 40%);
+  font-weight: 700;
   margin: 2em auto;
-  width: 300px;
-  box-shadow: 5px 5px 5px #111;
-  background-color: white;
+  padding: 1em;
+  width: 600px;
 }
 
-header {
-  font-size: 2em;
-  padding: 0.25em 0;
+.count {
+  font-size: 8em;
   text-align: center;
-  background-color: lighten($primary-color, 40);
 }
 
-table {
-  width: 100%;
-  padding: 3em;
-}
-
-tr {
-  width: 100%;
-}
-
-th {
-  text-align: left;
-}
-
-td {
-  text-align: right;
-}
-
-.loading {
-  text-align: center;
-  padding: 2em 0;
+.controls {
+  display: flex;
+  justify-content: center;
 }
