@@ -1,38 +1,34 @@
-import React, { CSSProperties, ReactNode } from "react";
+import React, { useState } from "react";
+import { questions } from "./question";
 
-type BoxProps = {
-  children: ReactNode;
-  style?: CSSProperties;
+type QuestionProps = {
+  question: string;
+  answer: string;
 };
 
-const Box = ({ children, style = {} }: BoxProps) => {
+const Question = ({ question, answer }: QuestionProps) => {
+  const [isHidden, toggleHidden] = useState(true);
   return (
-    <section
-      style={{
-        padding: "1em",
-        border: "10px solid red",
-        margin: "1em",
-        ...style,
-      }}
-    >
-      {children}
-    </section>
+    <article className="question">
+      <header>{question}</header>
+      <p className="answer">
+        <span className={`${isHidden ? "blurred" : ""} `}>{answer}</span>
+      </p>
+      <footer>
+        <button onClick={() => toggleHidden(!isHidden)}>Toggle Answer</button>
+      </footer>
+    </article>
   );
 };
 
 function App() {
   return (
-    <Box>
-      Just a string.
-      <p>Some HTML that is not nested.</p>
-      <Box>
-        <h2>Another React component with one child.</h2>
-      </Box>
-      <Box style={{ borderColor: "blue", background: "antiquewhite" }}>
-        <h2>A nested React component with two children.</h2>
-        <p>The second child.</p>
-      </Box>
-    </Box>
+    <main>
+      {questions.map(({ id, question, answer }) => (
+        <Question question={question} answer={answer} key={id} />
+      ))}
+      ;
+    </main>
   );
 }
 
