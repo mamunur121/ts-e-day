@@ -1,24 +1,17 @@
-import React from "react";
-import { CharacterType, fetchCharacter } from "./character";
-import { Loading } from "./Loading";
-import { CharacterInformation } from "./CharacterInformation";
+import React, { useEffect, useState } from "react";
 
 function App() {
-  const [character, setCharacter] = React.useState<CharacterType | null>(null);
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      fetchCharacter().then((character) => {
-        setCharacter(character);
-        setLoading(false);
-      });
-    }, 1500);
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCount((c) => c + 1);
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
-  if (loading) return <Loading />;
   return (
-    <main>{character && <CharacterInformation character={character} />}</main>
+    <main>{count}</main>
   );
 }
 
